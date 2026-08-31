@@ -27,6 +27,7 @@ class BlogAdmin(admin.ModelAdmin):
         "status",
         "author__username",
     )
+    ordering = ("id",)
     list_editable = ("is_featured","status")
 
 
