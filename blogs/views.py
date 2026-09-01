@@ -7,6 +7,7 @@ from .models import Blog, Category
 def posts_by_category(request, id):
     # Fetch the post that belongs to the category with the id:id
     posts = Blog.objects.filter(status="Published", category=id)
+    print(id,posts)
     # try:
     #     category = Category.objects.get(id=id)
     # except:
@@ -14,8 +15,13 @@ def posts_by_category(request, id):
     #     return redirect("home")
     category = get_object_or_404(Category, id=id)
     # use get_object_or_404() to show custom 404 page
-    context = {
-        "posts": posts,
-        "category": category
-        }
+    context = {"posts": posts, "category": category}
     return render(request, "post_by_category.html", context)
+
+
+def blogs(request, slug):
+    single_blog = get_object_or_404(Blog, slug=slug, status="Published")
+    context = {
+        "single_blog": single_blog,
+    }
+    return render(request, "blogs.html", context)
