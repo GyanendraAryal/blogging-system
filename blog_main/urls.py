@@ -16,7 +16,7 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from .views import home
+from .views import home, register, login
 from django.urls import path,include
 from django.conf.urls.static import static
 from django.conf import settings
@@ -26,7 +26,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", home, name="home"),
     path("category/", include("blogs.urls")),
-    path("<slug:slug>/", BlogsView.blogs, name="blogs"),
+    path("blogs/<slug:slug>/", BlogsView.blogs, name="blogs"),
     # Search Endpoint
-    path('blogs/search/', BlogsView.search, name="search")
+    path("blogs/search/", BlogsView.search, name="search"),
+    path("register/",register, name="register"),
+    path("login/", login, name="login")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

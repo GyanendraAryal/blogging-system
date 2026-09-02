@@ -1,7 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from blogs.models import Category, Blog
 from aboutus.models import About, SocialLink
+from .forms import RegisterationForm
 
 def home(request):
     # categories = Category.objects.all()
@@ -19,3 +20,21 @@ def home(request):
             #    "social":social
                }
     return render(request, "home.html", context)
+
+
+def register(request):
+    if request.method == "POST":
+        form = RegisterationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("register")
+    else:
+        print(form.errors)
+
+    context ={
+        "form":form
+    }
+    return render(request, 'register.html', context)
+
+def login(request):
+    return render(request, "login.html")
