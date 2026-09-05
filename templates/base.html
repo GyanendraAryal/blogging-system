@@ -30,7 +30,8 @@
             <a class="btn btn-sm btn-warning" href="{% url "login"%}">Log In</a> &nbsp;
             <a class="btn btn-sm btn-outline-secondary" href="{% url 'register'%}">Register</a>
             {% else %}
-            <span class = "text-capitalize">{{user}}</span>
+            {% comment %} <span class = "text-capitalize"><a class="text-dark bg-warning" href="{% url 'dashboard'%}">Dashboard</a></span> {% endcomment %}
+            <button class="btn btn-warning"><a class="text-dark" href="{% url "dashboard"%}">Dashboard</a></button >
             &emsp;
             <button class="btn btn-warning"><a class="text-dark" href="{% url "logout"%}">Logout</a></button >
             {% endif %}

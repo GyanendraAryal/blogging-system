@@ -32,4 +32,6 @@ urlpatterns = [
     path("register/", register, name="register"),
     path("login/", login, name="login"),
     path("logout/", logout, name="logout"),
+    # Dashboards endpoints
+    path("dashboard/", include("dashboards.urls"))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
