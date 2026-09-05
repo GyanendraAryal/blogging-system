@@ -2,9 +2,9 @@
 {% block content %}
 <div class="row">
   {% comment %} Left sidebar {% endcomment %}
- {% include "dashboard/sidebar.html" %}
-  {% comment %} Right sidebar {% endcomment %}
+  {% include "dashboard/sidebar.html" %} {% comment %} Right sidebar {% endcomment %}
   <div class="col-md-9">
+    <span>Logged in as <b class="text-capitalize">{{user}}</b></span>
     <div class="row">
       <div class="col">
         <div class="card border-default mb-3">
