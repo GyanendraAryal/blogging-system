@@ -5,6 +5,7 @@
   {% include "dashboard/sidebar.html" %} {% comment %} Right sidebar {% endcomment %}
   <div class="col-md-9">
     <h1>All Categories</h1>
+    <a href="{% url "add_category"%}" class="btn text-light btn-dark float-right mb-2">Add New</a>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -23,11 +24,11 @@
           <td>{{category.created_at}}</td>
           <td>{{category.updated_at}}</td>
           <td>
-            <a href="">
+            <a href="{% url "edit_category" category.id%}">
               <i class="fa fa-edit text-success"> Edit</i>
             </a>
             &nbsp;
-            <a href="">
+            <a href="{% url "delete_category" category.id%}">
               <i class="fa fa-trash text-danger"> Delete</i>
             </a>
           </td>
