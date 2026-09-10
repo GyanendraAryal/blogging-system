@@ -1,5 +1,6 @@
 from django import forms
 from blogs.models import Category, Blog
+from django.contrib.auth.models import User
 
 
 class CategoryForm(forms.ModelForm):
@@ -20,3 +21,8 @@ class BlogPostForm(forms.ModelForm):
             "status",
             "is_featured",
         )
+
+# class UserForm(forms.ModelForm):
+#     class Meta:
+#         model = User
+#         fields = "__all __"
