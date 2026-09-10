@@ -28,7 +28,7 @@
           <td>{{post.status}}</td>
           <td>{{post.is_featured}}</td>
           <td>
-            <a href="">
+            <a href="{% url "edit_post" post.id %}">
               <i class="fa fa-edit text-success"> Edit</i>
             </a>
             &nbsp;
