@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from blogs.models import Category, Blog
 from django.contrib.auth.decorators import login_required
-from .forms import CategoryForm, BlogPostForm
+from .forms import CategoryForm, BlogPostForm, AddUserForm
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
 
@@ -101,5 +101,16 @@ def users(request):
     return render(request, "dashboard/users.html", context)
 
 
-def add_user(request, id):
-    return render(request,"dashboard/add_user")
+def add_user(request):
+    form = AddUserForm()
+    if request.method == "POST":
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("users")
+        form = AddUserForm()
+        return redirect("add_user")
+    context = {
+        "form":form
+    }
+    return render(request,"dashboard/add_user.html",context)
