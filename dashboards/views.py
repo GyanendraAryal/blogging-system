@@ -71,11 +71,17 @@ def add_post(request):
     context = {"form": form}
     return render(request, "dashboard/add_post.html", context)
 
+
 def edit_post(request, id):
     post = get_object_or_404(Blog, id=id)
+    if request.method == "POST":
+        form = BlogPostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid:
+            post = form.save()
+            title = form.cleaned_data["title"]
+            post.slug = slugify(title) + "-" + str(post.id)
+            post.save()
+            return redirect("posts")
     form = BlogPostForm(instance=post)
-    context = {
-        "form":form,
-        "post":post
-    }
+    context = {"form": form, "post": post}
     return render(request, "dashboard/edit_post.html", context)
