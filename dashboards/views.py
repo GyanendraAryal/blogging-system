@@ -85,3 +85,8 @@ def edit_post(request, id):
     form = BlogPostForm(instance=post)
     context = {"form": form, "post": post}
     return render(request, "dashboard/edit_post.html", context)
+
+def delete_post(request, id):
+    post = get_object_or_404(Blog, id=id)
+    post.delete()
+    return redirect("posts")
